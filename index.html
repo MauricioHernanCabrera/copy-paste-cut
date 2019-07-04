@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Copy, Paste and Cut</title>
+  </head>
+  <body>
+    <div>
+      <textarea id="texto"></textarea>
+      <br />
+      <button id="btn-copy">Copiar</button>
+      <button id="btn-cut">Cortar</button>
+      <button id="btn-paste">Paste</button>
+    </div>
+
+    <script>
+      const copyToClipboard = () => {
+        const el = document.getElementById('texto');
+        el.select();
+        document.execCommand('copy');
+      };
+
+      const cutToClipboard = () => {
+        const el = document.getElementById('texto');
+        el.select();
+        document.execCommand('cut');
+      };
+
+      const pasteToClipboard = () => {
+        navigator.clipboard.readText().then(clipText => {
+          const el = document.getElementById('texto');
+          el.value = clipText;
+        });
+      };
+
+      document.getElementById('btn-copy').addEventListener('click', () => {
+        copyToClipboard();
+      });
+      document.getElementById('btn-paste').addEventListener('click', () => {
+        pasteToClipboard();
+      });
+      document.getElementById('btn-cut').addEventListener('click', () => {
+        cutToClipboard();
+      });
+    </script>
+  </body>
+</html>
