@@ -31,7 +31,7 @@
       const pasteToClipboard = () => {
         navigator.clipboard.readText().then(clipText => {
           const el = document.getElementById('texto');
-          el.value = clipText;
+          el.value += clipText;
         });
       };
 
